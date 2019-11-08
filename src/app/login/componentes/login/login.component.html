@@ -1,12 +1,16 @@
+
+
 <div class="login">
+  
     <form  #formuser="ngForm" (ngSubmit)="login(formuser)">
     <div class="formlogin">
           <h1>HotelApp</h1>
           <input type="email" class="form-control" [(ngModel)]="usuario.username" placeholder="Usuario" name="usuario">
           <input type="email" class="form-control" [(ngModel)]="usuario.pwd" placeholder="Contraseña" type="password" name="password">
-          <button type="submit" class="btn btn-outline-primary btn-block">Entrar</button>
+          <button type="submit" class="btn btn-primary btn-block">Entrar</button>
         </div>
     </form>
+    <img src="./../../../../assets/img/hotel.svg" alt="" srcset="" width="400" >
 </div>
     
 

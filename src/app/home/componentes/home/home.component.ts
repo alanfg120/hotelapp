@@ -7,6 +7,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
+  menu:any=[
+    {
+      titulo:"Nuevo Ingreso",
+      icono:"create",
+      ruta:"ingresos/new"
+    },
+    {
+      titulo:"Ingresos y Salidas",
+      icono:"table_chart",
+      ruta:"ingresos"
+    },
+    {
+      titulo:"Salir",
+      icono:"power_settings_new",
+      ruta:"new"
+    },
+  ]
+
   constructor() { }
 
   ngOnInit() {

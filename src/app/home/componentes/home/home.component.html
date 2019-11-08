@@ -1,0 +1,28 @@
+<ul class="navbar">
+    
+   
+  </ul>
+<div class="wrapper">
+  <!-- Sidebar  -->
+  <nav id="sidebar">
+    <ul class="menu">
+       <li class="item" *ngFor="let item of menu"  [routerLink]="item.ruta">
+            <i class="material-icons" style="color: #007bff;margin-left: 10px;">
+              {{item.icono}}
+            </i>
+            <span>{{item.titulo}}</span>
+       </li>
+      
+   </ul>
+
+  </nav>
+
+  <!-- Page Content  -->
+  <div id="content">
+    
+    <div class="contenido">
+        <router-outlet></router-outlet>
+       
+    </div>
+  </div>
+</div>

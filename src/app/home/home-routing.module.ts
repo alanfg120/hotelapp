@@ -6,7 +6,14 @@ import { HomeComponent } from './componentes/home/home.component';
 const routes: Routes = [
   {
     path:'',
-    component:HomeComponent
+    component:HomeComponent,
+    children:[
+      {
+        path: "ingresos", 
+        loadChildren: "./../ingresos/ingresos.module#IngresosModule" 
+      }
+      
+    ]
   }
 ];
 
