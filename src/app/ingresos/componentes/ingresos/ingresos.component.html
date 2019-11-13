@@ -1,1 +1,61 @@
-<p>ingresos works!</p>
+<h3 style="text-align: center; font-weight: 100;">
+  Ingresos
+</h3>
+
+<div class="input-group mb-4">
+  <input type="text" class="form-control" placeholder="Buscar" name="texto" [(ngModel)]="texto"/>
+  <div class="input-group-btn">
+    <button class="buscar" disabled>
+      <i class="material-icons">search</i>
+    </button>
+  </div>
+</div>
+<div class="encabezado">
+  <div>Inquilino</div>
+  <div>Empresa</div>
+  <div>Habitacion-Valor</div>
+  <div>Fecha Ingreso</div>
+  <div>Fecha salida</div>
+  <div>Observaciones</div>
+</div>
+<cdk-virtual-scroll-viewport [itemSize]="10" class="ingreso-conten">
+  <div
+    class="spinner-border text-primary"
+    role="status"
+    *ngIf="!loading"
+    style="margin-left:50%;margin-top: 28vh;"
+  >
+    <span class="sr-only">Loading...</span>
+  </div>
+  <div
+    class="ingresos"
+    [ngStyle]="{ 'border-left': item.color }"
+    *cdkVirtualFor="let item of ingresos | buscar:texto,let i = index"
+  >
+    <div>
+      <div>{{ item.nombre }}</div>
+      <div>CC: {{ item.cedula }}</div>
+    </div>
+    <div>
+      <div>{{ item.empresa }}</div>
+      <div>Nit: {{ item.cedula }}</div>
+    </div>
+    <div>
+      <div>{{ item.habitacion }}</div>
+      <div>Valor: ${{ item.valor }}</div>
+    </div>
+    <div>{{ item.fechaIngreso}}</div>
+    <div>
+      <div *ngIf="item.fechaSalida">{{ item.fechaSalida }}</div>
+      <button
+        type="button"
+        class="btn btn-primary btn-sm"
+        (click)="salida(item._id,i)"
+        *ngIf="!item.fechaSalida"
+      >
+        Registrar Salida
+      </button>
+    </div>
+    <div>{{ item.observaciones }}</div>
+  </div>
+</cdk-virtual-scroll-viewport>

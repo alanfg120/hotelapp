@@ -1,0 +1,32 @@
+.encabezado{
+
+display: grid;
+grid-template-columns: 250px repeat(5,1fr);
+border-bottom: 3px solid #e0e0e0;
+padding: 10px;
+font-weight:500;
+color: #6d6d6d;
+}
+.ingresos{
+
+display: grid;
+grid-template-columns: 250px repeat(5,1fr);
+height: 100px;
+padding: 20px;
+
+color: #6d6d6d;
+border-bottom: solid 1px #f5f5f5;
+}
+
+.ingreso-conten{
+  height: 56vh;
+  overflow-y: scroll;
+}
+
+.buscar{
+    background-color: transparent;
+    border:none;
+    height: 38px;
+    display: flex;
+    justify-content: center;
+}

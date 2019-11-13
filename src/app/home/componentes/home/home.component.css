@@ -27,6 +27,8 @@ a:focus {
     border-radius: 0;
     margin-bottom: 40px;
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    width: 100%;
 }
 
 .navbar-btn {
@@ -53,13 +55,15 @@ a:focus {
 }
 
 #sidebar {
+    margin-top: 55px;
     min-width: 250px;
     max-width: 250px;
-    background: #ffffff;
+    background: #f8f9fa;
     color: #6d6d6d;
     transition: all 0.3s;
     height: calc(100vh - 52px);
-    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+    position: fixed;
+  
 }
 
 #sidebar.active {
@@ -147,9 +151,10 @@ a.article:hover {
 ----------------------------------------------------- */
 
 #content {
+
     width: 100%;
- 
     min-height: calc(100vh - 52px);
+ 
     transition: all 0.3s;
 }
 
@@ -167,16 +172,32 @@ a.article:hover {
     #sidebarCollapse span {
         display: none;
     }
+ 
 }
+@media (max-width: 1920px) {
+    #content{
+        padding:100px 40px 0px 300px;
+    }
 
+}
+@media (max-width: 1360px) {
+    #content{
+        padding:100px 30px 0px 300px;
+    }
+
+}
+@media (max-width: 768px) {
+    #content{
+        padding:30px;
+    }
+
+}
 .md-48{
     font-size: 37px;
     margin-right: 5px;
 }
 
-.contenido{
-   padding: 100px 200px;
-}
+
 
 .item{
     padding: 10px;
@@ -205,15 +226,23 @@ a.article:hover {
     margin-left: 20px;
     
 }
-.navbar {
-    list-style-type: none;
+.navbar{
+
     margin: 0;
-    padding: 0;
+    padding: 10px;
     height: 52px;
     overflow: hidden;
     background: white;
+    display: flex;
+    flex-direction: row;
   }
-  
+  .titulo{
+     
+      font-size: 30px;
+      color: gray;
+      margin-right: 50px;
+      font-weight: 100;
+  }
   
   
   

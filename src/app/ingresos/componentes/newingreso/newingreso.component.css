@@ -1,20 +1,63 @@
-.form{
-   box-sizing: border-box;
-   background-color: #f2f2f2;
-   padding: 20px;
-   width:100%;
-   border: 1px solid white; 
-   border-radius: 10px;
-   box-shadow: -1px 1px 9px -1px rgba(41, 41, 41, 0.75);
+
+
+
+.habitaciones{
+
+   display: grid;
+   grid-template-columns: repeat(auto-fill,150px);
+   grid-auto-rows: 100px;
+   grid-gap: 10px;
+ 
+
+
 }
 
-.error{
-   font-size: 10pt;
-   color: red;
-   margin-left: 3px;
+.ocupada,.reservado,.disponible{
+  font-weight: bold;
 }
 
-.ng-invalid.ng-touched:not(form){
+.ocupada{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color:#dc3545;
+  border:1px solid rgb(223, 223, 223);
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+  
+}
+.reservado{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffc107;
+  border:1px solid rgb(223, 223, 223);
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+  
+}
 
-   border: 1px solid red;
+.disponible{
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f8f9fa;
+  border:1px solid rgb(143, 143, 143);
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.habitacion:hover{
+   
+}
+
+.leyenda{
+  width: 350px;
+  margin-bottom: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
