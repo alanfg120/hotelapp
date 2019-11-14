@@ -1,37 +1,28 @@
 <h3 style="text-align: center;  font-weight: 100;">
-    Habitaciones
-  </h3>
+  Habitaciones
+</h3>
 <div class="leyenda">
-  
-<span class="badge badge-pill badge-danger p-1">Ocupado</span>
-<span class="badge badge-pill badge-warning p-1">Reservado</span>
+  <span class="badge badge-pill badge-danger p-1">Ocupado</span>
+  <span class="badge badge-pill badge-warning p-1">Reservado</span>
 
-<span class="badge badge-pill badge-light p-1">Disponible</span>
-
+  <span class="badge badge-pill badge-light p-1">Disponible</span>
 </div>
 <div class="habitaciones">
-    <button
+  <button
     type="button"
-   
     data-toggle="modal"
     data-target="#exampleModalCenter"
     *ngFor="let item of habitaciones"
-    (click)="modal(item.habitacion,item.estado)"
+    (click)="salidaEvent(item.habitacion,item.estado)"
     [ngClass]="{
-                'disponible': item.estado ==='disponible',
-                'ocupada'   : item.estado ==='ocupado',
-                'reservado'   : item.estado ==='reservado'
-              
-              }"
+      disponible: item.estado === 'disponible',
+      ocupada: item.estado === 'ocupado',
+      reservado: item.estado === 'reservado'
+    }"
   >
-  {{item.habitacion}}
+    {{ item.habitacion }}
   </button>
-  
-
 </div>
-
-
-
 
 <!-- <button
   type="button"
@@ -44,4 +35,9 @@
 
 <!-- Modal -->
 
-<app-formulario [habitacion]="habitacion" [estadoactual]="estado" (estado)="updateEstado($event)"></app-formulario>
+<app-formulario
+  [habitacion]="habitacion"
+  [estadoactual]="estado"
+  (estado)="updateEstado($event)"
+  [events]="salida.asObservable()"
+></app-formulario>

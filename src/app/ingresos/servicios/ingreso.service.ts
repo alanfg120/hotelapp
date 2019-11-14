@@ -10,14 +10,10 @@ export class IngresoService {
   constructor(public http:HttpClient) { }
 
   newIngreso(ingreso){
- 
     return this.http.post("http://localhost:3000/ingresos/new",ingreso).toPromise()
-     
   }
-
   getingresos(){
-  
-    return this.http.get("http://localhost:3000/ingresos/get")
+   return this.http.get("http://localhost:3000/ingresos/get")
   }
   gethabitaciones(){
       return this.http.get("http://localhost:3000/habitaciones/get")
@@ -25,6 +21,10 @@ export class IngresoService {
    salida(salida){
      return this.http.put("http://localhost:3000/ingresos/salida",salida).toPromise()
    }
-
+   getingreso(query){
+    return this.http.get(`http://localhost:3000/ingresos/get/${query.habitacion}/${query.finalizado}`)
+      
+   }
   
 }
+

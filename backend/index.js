@@ -14,7 +14,6 @@ app.use("/habitaciones", require("./api/habitaciones"));
 
 
 
-app.listen(3000, function () {
+app.listen(3000,()=>{
   console.log('Server Ready');
-  
 }); 

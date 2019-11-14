@@ -1,111 +1,117 @@
-
-        <div
-          class="modal fade"
-          id="exampleModalCenter"
-          tabindex="-1"
-          role="dialog"
-          aria-labelledby="exampleModalCenterTitle"
-          aria-hidden="true"
-     
-        > 
-          <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-              
-            <div class="modal-content" *ngIf="estadoactual=='disponible'">
-                <form #form="ngForm" (ngSubmit)="onSubmit(form)">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalCenterTitle">Nuevo Ingreso</h5>
-                <button
-                  type="button"
-                  class="close"
-                  data-dismiss="modal"
-                  aria-label="Close"
-                >
-                  <span aria-hidden="true">&times;</span>
-                </button>
+<div
+  class="modal fade"
+  id="exampleModalCenter"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true"
+>
+  <div
+    class="modal-dialog modal-dialog-centered "
+    role="document"
+    [ngClass]="{
+      'modal-xxl': estadoactual == 'ocupado' || estadoactual == 'reservado',
+      'modal-lg': estadoactual == 'disponible'
+    }"
+  >
+    <div class="modal-content" *ngIf="estadoactual == 'disponible'">
+      <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalCenterTitle">
+            Nuevo Ingreso
+          </h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group row has-danger">
+            <label for="colFormLabel" class="col-sm-2 col-form-label"
+              >Nombre</label
+            >
+            <div class="col-sm-4">
+              <input
+                type="text"
+                class="form-control"
+                id="colFormLabel"
+                placeholder="Ingrese El Nombre"
+                name="nombre"
+                #nombre="ngModel"
+                [(ngModel)]="ingreso.nombre"
+                required
+              />
+              <div class="error" *ngIf="nombre.errors?.required && errorinput">
+                Nombre es requerido
               </div>
-              <div class="modal-body">
-                <div class="form-group row has-danger">
-                  <label for="colFormLabel" class="col-sm-2 col-form-label"
-                    >Nombre</label
-                  >
-                  <div class="col-sm-4">
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="colFormLabel"
-                      placeholder="Ingrese El Nombre"
-                      name="nombre"
-                      #nombre="ngModel"
-                      [(ngModel)]="ingreso.nombre"
-                      required
-                    />
-                    <div class="error" *ngIf="nombre.errors?.required && errorinput">
-                      Nombre es requerido
-                    </div>
-                  </div>
-                  <label for="colFormLabel" class="col-sm-2 col-form-label"
-                    >Cedula</label
-                  >
-                  <div class="col-sm-4">
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="colFormLabel"
-                      placeholder="Ingrese La Cedula"
-                      name="cedula"
-                      #cedula="ngModel"
-                      [(ngModel)]="ingreso.cedula"
-                      required
-                    />
-                    <div class="error" *ngIf="cedula.errors?.required && errorinput">
-                      Cedula es requerido
-                    </div>
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <label for="colFormLabel" class="col-sm-2 col-form-label"
-                    >Empresa</label
-                  >
-                  <div class="col-sm-4">
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="colFormLabel"
-                      placeholder="Nombre de la Empresa"
-                      name="empresa"
-                      [(ngModel)]="ingreso.empresa"
-                    />
-                  </div>
-                  <label for="colFormLabel" class="col-sm-2 col-form-label"
-                    >Nit</label
-                  >
-                  <div class="col-sm-4">
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="colFormLabel"
-                      placeholder="Nit"
-                      name="nit"
-                      [(ngModel)]="ingreso.nit"
-                    />
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <label for="colFormLabel" class="col-sm-2 col-form-label"
-                    >Habitacion</label
-                  >
-                  <div class="col-sm-4">
-                    <select
-                      class="custom-select"
-                      [(ngModel)]="ingreso.estado"
-                      name="habitacion"
-                      #habitacion="ngModel"
-                      required
-                    >
-                      <option value="ocupado">Ocupado</option>
-                      <option value="reservado">Reservado</option>
-                    </select>
-                    <!-- <input
+            </div>
+            <label for="colFormLabel" class="col-sm-2 col-form-label"
+              >Cedula</label
+            >
+            <div class="col-sm-4">
+              <input
+                type="text"
+                class="form-control"
+                id="colFormLabel"
+                placeholder="Ingrese La Cedula"
+                name="cedula"
+                #cedula="ngModel"
+                [(ngModel)]="ingreso.cedula"
+                required
+              />
+              <div class="error" *ngIf="cedula.errors?.required && errorinput">
+                Cedula es requerido
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="colFormLabel" class="col-sm-2 col-form-label"
+              >Empresa</label
+            >
+            <div class="col-sm-4">
+              <input
+                type="text"
+                class="form-control"
+                id="colFormLabel"
+                placeholder="Nombre de la Empresa"
+                name="empresa"
+                [(ngModel)]="ingreso.empresa"
+              />
+            </div>
+            <label for="colFormLabel" class="col-sm-2 col-form-label"
+              >Nit</label
+            >
+            <div class="col-sm-4">
+              <input
+                type="text"
+                class="form-control"
+                id="colFormLabel"
+                placeholder="Nit"
+                name="nit"
+                [(ngModel)]="ingreso.nit"
+              />
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="colFormLabel" class="col-sm-2 col-form-label"
+              >Habitacion</label
+            >
+            <div class="col-sm-4">
+              <select
+                class="custom-select"
+                [(ngModel)]="ingreso.estado"
+                name="habitacion"
+                #habitacion="ngModel"
+                required
+              >
+                <option value="ocupado">Ocupado</option>
+                <option value="reservado">Reservado</option>
+              </select>
+              <!-- <input
                       type="text"
                       class="form-control"
                       id="colFormLabel"
@@ -115,74 +121,148 @@
                       required
                       #habitacion="ngModel"
                     /> -->
-                    <div
-                      class="error"
-                      *ngIf="habitacion.errors?.required && errorinput"
-                    >
-                      Habitacion es requerido
-                    </div>
-                  </div>
-                  <label for="colFormLabel" class="col-sm-2 col-form-label"
-                    >Valor</label
-                  >
-                  <div class="col-sm-4">
-                    <input
-                      type="number"
-                      class="form-control"
-                      id="colFormLabel"
-                      placeholder="Valor Noche"
-                      required
-                      #valor="ngModel"
-                      [(ngModel)]="ingreso.valor"
-                      name="valor"
-                    />
-                    <div class="error" *ngIf="valor.errors?.required && errorinput">
-                      Habitacion es requerido
-                    </div>
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <label for="colFormLabel" class="col-sm-2 col-form-label"
-                    >Observaciones</label
-                  >
-                  <div class="col-sm-10">
-                    <textarea
-                      class="form-control"
-                      id="validationTextarea"
-                      placeholder="Observaciones"
-                      name="observaciones"
-                      [(ngModel)]="ingreso.observaciones"
-                    ></textarea>
-                  </div>
-                </div>
+              <div
+                class="error"
+                *ngIf="habitacion.errors?.required && errorinput"
+              >
+                Habitacion es requerido
               </div>
-              <div class="modal-footer">
-                <button type="submit" class="btn btn-primary">Guardar</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal" #closeModal>
-                  Cerrar
-                </button>
+            </div>
+            <label for="colFormLabel" class="col-sm-2 col-form-label"
+              >Valor</label
+            >
+            <div class="col-sm-4">
+              <input
+                type="number"
+                class="form-control"
+                id="colFormLabel"
+                placeholder="Valor Noche"
+                required
+                #valor="ngModel"
+                [(ngModel)]="ingreso.valor"
+                name="valor"
+              />
+              <div class="error" *ngIf="valor.errors?.required && errorinput">
+                Habitacion es requerido
               </div>
-            </form>
             </div>
-            <div class="modal-content" *ngIf="estadoactual=='ocupado'">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalCenterTitle">Ocupado</h5>
-                    <button
-                      type="button"
-                      class="close"
-                      data-dismiss="modal"
-                      aria-label="Close"
-                    >
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    
-                  </div>
-
-
-            </div>
-            
           </div>
-   
+          <div class="form-group row">
+            <label for="colFormLabel" class="col-sm-2 col-form-label"
+              >Observaciones</label
+            >
+            <div class="col-sm-10">
+              <textarea
+                class="form-control"
+                id="validationTextarea"
+                placeholder="Observaciones"
+                name="observaciones"
+                [(ngModel)]="ingreso.observaciones"
+              ></textarea>
+            </div>
+          </div>
         </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Guardar</button>
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-dismiss="modal"
+            #closeModal
+          >
+            Cerrar
+          </button>
+        </div>
+      </form>
+    </div>
+    <div class="modal-content" *ngIf="estadoactual == 'ocupado' || estadoactual == 'reservado'">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">
+          <span *ngIf="estadoactual == 'ocupado'"  >Ocupado</span>
+          <span *ngIf="estadoactual == 'reservado'">Reservado</span>
+        </h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="encabezado">
+          <div>Inquilino</div>
+          <div>Empresa</div>
+          <div>Habitacion-Valor</div>
+          <div>Fecha Ingreso</div>
+          <div>
+            <span *ngIf="estadoactual=='ocupado'">Salida</span>
+            <span *ngIf="estadoactual=='reservado'">Reserva</span>
+          </div>
+          <div>Observaciones</div>
+        </div>
+        <div
+          class="ingresos"
+          [ngStyle]="{ 'border-left': item.color }"
+          *ngFor="let item of ingresoOld; let i = index"
+        >
+          <div>
+            <div>{{ item.nombre }}</div>
+            <div>CC: {{ item.cedula }}</div>
+          </div>
+          <div>
+            <div>{{ item.empresa }}</div>
+            <div>Nit: {{ item.cedula }}</div>
+          </div>
+          <div>
+            <div>{{ item.habitacion }}</div>
+            <div>Valor: ${{ item.valor }}</div>
+          </div>
+          <div>{{ item.fechaIngreso }}</div>
+          <div>
+            <button
+              type="button"
+              class="btn btn-primary btn-sm"
+              *ngIf="!item.fechaSalida && estadoactual == 'ocupado'"
+              (click)="salida(i)"
+            >
+              Registrar Salida
+            </button>
+            <div class="reserva">
+              <button
+              type="button"
+              class="btn btn-primary btn-sm"
+              *ngIf="!item.fechaSalida && estadoactual == 'reservado'"
+              (click)="reserva(i,true)"
+            >
+              Confirmar
+            </button>
+              <button
+              type="button"
+              class="btn btn-danger btn-sm mt-3"
+              *ngIf="!item.fechaSalida && estadoactual == 'reservado'"
+              (click)="reserva(i,false)"
+            >
+              Cancelar
+            </button>
+            </div>
+          </div>
+          <div>{{ item.observaciones }}</div>
+        </div>
+      </div>
+      <div class="modal-footer">
+         <button
+          type="button"
+          class="btn btn-secondary"
+          data-dismiss="modal"
+          #closeModal
+        >
+          Cerrar
+        </button>
+      </div>
+    </div>
+    
+  
+  </div>
+</div>

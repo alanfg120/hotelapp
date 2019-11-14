@@ -13,7 +13,8 @@ public observaciones:string;
 public fechaIngreso:string;
 public fechaSalida:string;
 public color:string;
-public estado:string
+public estado:string;
+public finalizado:boolean;
 
 
 
