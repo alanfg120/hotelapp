@@ -20,6 +20,7 @@ import { Observable } from "rxjs";
 })
 export class FormularioComponent implements OnInit {
 
+  loading:boolean;
   @Input() events: Observable<void>;
   @Input() habitacion: string;
   @Input() estadoactual: string;
@@ -38,7 +39,10 @@ export class FormularioComponent implements OnInit {
         if (data.estadoactual == "ocupado" || data.estadoactual == "reservado")
              this.ingresoService.getingreso(data)
                                 .subscribe((data: any) => {
+                                 console.log(data);
+                                 
                                  this.ingresoOld = data
+                                 this.loading=true
         });
     });
   }
@@ -55,7 +59,7 @@ export class FormularioComponent implements OnInit {
       let status: any = await this.ingresoService.newIngreso(this.ingreso);
       status.error ? alert("error") : this.closeModal.nativeElement.click();
       this.updateHabitacion(this.habitacion,this.ingreso.estado)
-     
+      form.reset()
     } else {
       this.errorinput = !this.errorinput;
     }
@@ -71,10 +75,24 @@ async salida(index){
      this.closeModal.nativeElement.click();
    }
 }
-reserva(index,estado){
+async reserva(index,estado){
+  let estadoHabitacion;
   if(this.estadoactual == 'reservado'){
-    
+ 
+         this.ingresoOld[index].reserva = estado
 
+         if(estado){
+             this.ingresoOld[index].fechaIngreso =   this.ingreso.fechaIngreso = moment().locale("es") .format("L").toString();
+             estadoHabitacion = "ocupado"
+         }
+         else estadoHabitacion = "disponible"
+
+         let status:any = await this.ingresoService.reserva(this.ingresoOld[index])
+         status.error ?  alert("Ocurrio Un Error") : alert(`Reserva ${estado ? "Comfirmada": "Cancelada"}`)
+         this.closeModal.nativeElement.click();
+         this.updateHabitacion(this.ingresoOld[index].habitacion,estadoHabitacion)
+    
+   
 
   }
 }

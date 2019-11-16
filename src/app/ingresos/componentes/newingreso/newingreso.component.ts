@@ -22,7 +22,7 @@ export class NewingresoComponent implements OnInit {
   
     this.ingresoService.gethabitaciones().subscribe((data:any)=>{
        console.log(data);
-       this.habitaciones=data[0].habitaciones
+       this.habitaciones=data
 
     })
   }
@@ -37,7 +37,11 @@ export class NewingresoComponent implements OnInit {
     
   }
   salidaEvent(habitacion,estadoactual) {
-    this.salida.next({habitacion,estadoactual});
+     let tipo;
+     if(estadoactual=='ocupado')tipo = "ingresos"
+     if(estadoactual=='reservado')tipo = "reservas"
+
+    this.salida.next({habitacion,estadoactual,tipo});
  
   }
   

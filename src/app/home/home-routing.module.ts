@@ -11,6 +11,10 @@ const routes: Routes = [
       {
         path: "ingresos", 
         loadChildren: "./../ingresos/ingresos.module#IngresosModule" 
+      },
+      {
+        path:"**",
+        loadChildren: "./../ingresos/ingresos.module#IngresosModule" 
       }
       
     ]

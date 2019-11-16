@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Usuario } from './../../UserClass'
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -13,19 +14,28 @@ export class LoginComponent implements OnInit {
   usuario= new Usuario();
   
   
-  constructor(private router: Router) { }
+  constructor(private router: Router,public auth:AuthService) { }
 
   ngOnInit() {
 
   }
   login(form:FormGroup){
-    console.log(form.valid);
+    
     
     if(form.valid){
-      if(this.usuario.username == "admin" && this.usuario.pwd == "admin"){
-         sessionStorage.setItem('token','hjshdjhfjd')
-         this.router.navigate(['home'])
-      }
+        this.auth.login(this.usuario).subscribe(
+        (data:any)=>{
+            if(data.auth){
+              console.log("hola");
+              
+               sessionStorage.setItem('token',data.token)
+               this.router.navigate(['home'])
+            }
+         },
+         (err)=>{
+            if(err)alert("Datos Incorrectos")
+          }
+         )
     
     }
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { IngresoService } from '../../servicios/ingreso.service';
 import { Ingreso } from '../../clases/ingreso';
 import * as moment from "moment";
@@ -8,13 +8,15 @@ import * as moment from "moment";
   styleUrls: ['./ingresos.component.css']
 })
 export class IngresosComponent implements OnInit {
+
+  @Input() tipo:string ="ingresos";
   texto:string;
   loading:boolean;
   ingresos:Ingreso[];
   constructor(public ingresoService:IngresoService) { }
 
 ngOnInit() {
-    this.ingresoService.getingresos().subscribe((data:Ingreso[])=>{
+    this.ingresoService.getingresos(this.tipo).subscribe((data:Ingreso[])=>{
           this.ingresos=data
           this.loading=!this.loading
     })

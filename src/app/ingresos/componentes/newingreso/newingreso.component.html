@@ -1,16 +1,18 @@
 <h3 style="text-align: center;  font-weight: 100;">
   Habitaciones
 </h3>
-<div class="leyenda">
+<div class="leyenda animated fadeIn fast">
   <span class="badge badge-pill badge-danger p-1">Ocupado</span>
   <span class="badge badge-pill badge-warning p-1">Reservado</span>
 
   <span class="badge badge-pill badge-light p-1">Disponible</span>
 </div>
-<div class="habitaciones">
+<div class="habitaciones ">
   <button
+    class="animated fadeIn fast"
     type="button"
     data-toggle="modal"
+    data-backdrop="static"
     data-target="#exampleModalCenter"
     *ngFor="let item of habitaciones"
     (click)="salidaEvent(item.habitacion,item.estado)"
@@ -36,8 +38,7 @@
 <!-- Modal -->
 
 <app-formulario
-  [habitacion]="habitacion"
-  [estadoactual]="estado"
+ 
   (estado)="updateEstado($event)"
   [events]="salida.asObservable()"
 ></app-formulario>

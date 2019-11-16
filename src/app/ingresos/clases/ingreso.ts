@@ -14,7 +14,9 @@ public fechaIngreso:string;
 public fechaSalida:string;
 public color:string;
 public estado:string;
+public telefono:string;
 public finalizado:boolean;
+public reserva:boolean;
 
 
 

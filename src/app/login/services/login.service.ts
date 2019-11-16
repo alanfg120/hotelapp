@@ -14,8 +14,6 @@ export class LoginService implements CanActivate {
 
   canActivate(netx: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     if (sessionStorage.getItem('token')) {
-        
-   
         return true;
     } else {
       this.router.navigate(['login'])

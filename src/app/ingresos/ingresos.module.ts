@@ -9,10 +9,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { BuscarPipe } from './pipes/buscar.pipe';
 import { FormularioComponent } from './componentes/formulario/formulario.component';
+import { ReservasComponent } from './componentes/reservas/reservas.component';
 
 
 @NgModule({
-  declarations: [IngresosComponent, NewingresoComponent, BuscarPipe, FormularioComponent],
+  declarations: [IngresosComponent, NewingresoComponent, BuscarPipe, FormularioComponent, ReservasComponent],
   imports: [
     CommonModule,
     IngresosRoutingModule,

@@ -12,12 +12,17 @@ export class HomeComponent implements OnInit {
     {
       titulo:"Habitaciones",
       icono:"hotel",
-      ruta:"ingresos/new"
+      ruta:"ingresos"
     },
     {
-      titulo:"Ingresos y Salidas",
+      titulo:"Ingresos",
       icono:"table_chart",
-      ruta:"ingresos"
+      ruta:"ingresos/ingresos"
+    },
+    {
+      titulo:"Reservas",
+      icono:"date_range",
+      ruta:"ingresos/reservas"
     },
     {
       titulo:"Salir",

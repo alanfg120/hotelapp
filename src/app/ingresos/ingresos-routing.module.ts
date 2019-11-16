@@ -2,16 +2,21 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { IngresosComponent } from './componentes/ingresos/ingresos.component';
 import { NewingresoComponent } from './componentes/newingreso/newingreso.component';
+import { ReservasComponent } from './componentes/reservas/reservas.component';
 
 
 const routes: Routes = [
   {
-    path:'',
+    path:'ingresos',
     component:IngresosComponent
   },
   {
-    path:'new',
+    path:'',
     component:NewingresoComponent
+  },
+  {
+    path:'reservas',
+    component:ReservasComponent
   }
 ];
 

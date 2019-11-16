@@ -12,8 +12,8 @@ export class IngresoService {
   newIngreso(ingreso){
     return this.http.post("http://localhost:3000/ingresos/new",ingreso).toPromise()
   }
-  getingresos(){
-   return this.http.get("http://localhost:3000/ingresos/get")
+  getingresos(tipo){
+   return this.http.get(`http://localhost:3000/ingresos/get/${tipo}`)
   }
   gethabitaciones(){
       return this.http.get("http://localhost:3000/habitaciones/get")
@@ -22,8 +22,13 @@ export class IngresoService {
      return this.http.put("http://localhost:3000/ingresos/salida",salida).toPromise()
    }
    getingreso(query){
-    return this.http.get(`http://localhost:3000/ingresos/get/${query.habitacion}/${query.finalizado}`)
+   
+    return this.http.get(`http://localhost:3000/ingresos/get/${query.habitacion}/${query.tipo}`)
       
+   }
+
+   reserva(reserva){
+     return this.http.put("http://localhost:3000/ingresos/reserva",reserva).toPromise()
    }
   
 }
