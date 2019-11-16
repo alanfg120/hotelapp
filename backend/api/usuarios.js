@@ -4,8 +4,6 @@ const bcrypt       = require("bcrypt");
 const jwt          = require("jsonwebtoken");
 
 router.post("/login",async (req,res)=>{
-      
-             
              var token
              let {db,conection} = await mongo()
              try {
@@ -30,5 +28,19 @@ router.post("/login",async (req,res)=>{
              conection.close()
 })
 
+router.put("/update",async (req,res)=>{
+             let {db,conection} = await mongo()
+             let password       = req.body.pwd
+
+             try {
+                 let newpwd = await bcrypt.hash(password,10)
+                 await db.collection("usuarios").findOneAndUpdate({username:"administrador"},{$set:{pwd:newpwd}})
+             res.status(200).send({ error: false })
+             } 
+             catch (err) {
+                res.status(400).send({ error: true }) 
+             }
+             conection.close()
+})
 
 module.exports = router

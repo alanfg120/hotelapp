@@ -1,39 +1,50 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <i class="material-icons" style="color: #007bff;margin-left: 10px;">
-       apps
-      </i>
-      <span class="titulo ml-2">
-          HotelApp
-         </span>
+  <i class="material-icons" style="color: #007bff;margin-left: 10px;">
+    apps
+  </i>
+  <span class="titulo ml-2">
+    HotelApp
+  </span>
 
-    <div class="collapse navbar-collapse" id="navbarText">
-      <ul class="navbar-nav mr-auto">
-          
-     </ul>
-    
-    </div>
-  </nav>
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav mr-auto"></ul>
+  </div>
+</nav>
 <div class="wrapper">
+   <app-password></app-password>
   <!-- Sidebar  -->
   <nav id="sidebar">
     <ul class="menu">
-       <li class="item" *ngFor="let item of menu"  [routerLink]="item.ruta">
-            <i class="material-icons" style="color: #007bff;margin-left: 10px;">
-              {{item.icono}}
-            </i>
-            <span>{{item.titulo}}</span>
-       </li>
-      
-   </ul>
-
+      <li class="item" *ngFor="let item of menu" [routerLink]="item.ruta">
+        <i class="material-icons" style="color: #007bff;margin-left: 10px;">
+          {{ item.icono }}
+        </i>
+        <span>{{ item.titulo }}</span>
+      </li>
+      <li class="item" data-toggle="modal" data-target="#password">
+        <i class="material-icons" style="color: #007bff;margin-left: 10px;">
+          lock
+        </i>
+        <span>Cambiar Contraseña</span>
+      </li>
+      <li class="item" (click)="auth.loginout()">
+        <i class="material-icons" style="color: #007bff;margin-left: 10px;">
+          power_settings_new
+        </i>
+        <span>Salir</span>
+      </li>
+    </ul>
   </nav>
 
   <!-- Page Content  -->
   <div id="content">
+
+    <router-outlet></router-outlet>
     
-    
-        <router-outlet></router-outlet>
-       
-   
   </div>
 </div>
+<!-- Button trigger modal -->
+
+  
+
+ 

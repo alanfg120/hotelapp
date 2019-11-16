@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/login/services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -24,16 +25,12 @@ export class HomeComponent implements OnInit {
       icono:"date_range",
       ruta:"ingresos/reservas"
     },
-    {
-      titulo:"Salir",
-      icono:"power_settings_new",
-      ruta:"new"
-    },
   ]
 
-  constructor() { }
+  constructor(public auth:AuthService) { }
 
   ngOnInit() {
-  }
 
+  }
+  
 }

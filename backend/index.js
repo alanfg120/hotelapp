@@ -25,8 +25,8 @@ app.use("/usuarios"    , require("./api/usuarios"));
 
 app.listen(3000,async ()=>{
   console.log('Server Ready');
- /*  let {db,conetion} = await mongo()
-  for (let index = 201; index < 212; index++) {
+  let {db,conetion} = await mongo()
+/*   for (let index = 201; index < 212; index++) {
        await db.collection("habitaciones").insertOne({
           habitacion:index.toString(),
           estado:"disponible"

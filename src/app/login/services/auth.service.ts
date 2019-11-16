@@ -18,6 +18,9 @@ export class AuthService {
      sessionStorage.removeItem('token')
      this.router.navigate(['login'])
    } 
-  
+   updatePassword(password){
+   return this.http.put("http://localhost:3000/usuarios/update",password)
+
+   }
 
 }

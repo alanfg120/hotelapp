@@ -57,7 +57,7 @@ export class FormularioComponent implements OnInit {
       this.ingreso.habitacion = this.habitacion;
       this.ingreso.finalizado = false;
       let status: any = await this.ingresoService.newIngreso(this.ingreso);
-      status.error ? alert("error") : this.closeModal.nativeElement.click();
+      status.error ? alert("Ocurrio un Error") : this.closeModal.nativeElement.click();
       this.updateHabitacion(this.habitacion,this.ingreso.estado)
       form.reset()
     } else {
