@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from './../../UserClass'
-import { FormGroup } from '@angular/forms';
+
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 
@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
 
   }
-  login(form:FormGroup){
+  login(form:any){
     
     
     if(form.valid){

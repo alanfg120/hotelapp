@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+
 import { AuthService } from 'src/app/login/services/auth.service';
 
 @Component({
@@ -16,7 +16,7 @@ export class PasswordComponent implements OnInit {
 
   ngOnInit() {
   }
-  onSubmit(form:FormGroup){
+  onSubmit(form:any){
      if(form.valid && this.newPassword==this.confPassword){
          this.auth.updatePassword({pwd:this.newPassword}).subscribe((data:any)=>{
            data.error ? alert("ocurrio un error") : alert("Se cambio la contraseña")

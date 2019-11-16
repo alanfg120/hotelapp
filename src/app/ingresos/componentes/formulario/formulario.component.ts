@@ -8,7 +8,7 @@ import {
   EventEmitter
 } from "@angular/core";
 import { IngresoService } from "../../servicios/ingreso.service";
-import { FormGroup } from "@angular/forms";
+
 import { Ingreso } from "../../clases/ingreso";
 import * as moment from "moment";
 import { Observable } from "rxjs";
@@ -46,7 +46,7 @@ export class FormularioComponent implements OnInit {
         });
     });
   }
- async onSubmit(form: FormGroup) {
+ async onSubmit(form: any) {
     if (form.valid) {
       this.ingreso.fechaIngreso = moment()
         .locale("es")
