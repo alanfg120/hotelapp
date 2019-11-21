@@ -31,6 +31,7 @@
     <span *ngIf="tipo == 'reservas'">Reservas</span>
   </div>
   <div>Observaciones</div>
+  <div>Editar</div>
 </div>
 <cdk-virtual-scroll-viewport [itemSize]="10" class="ingreso-conten">
   <div
@@ -53,7 +54,7 @@
     </div>
     <div>
       <div>{{ item.empresa }}</div>
-      <div>Nit: {{ item.cedula }}</div>
+      <div>Nit: {{ item.nit }}</div>
     </div>
     <div>
       <div>{{ item.habitacion }}</div>
@@ -61,12 +62,37 @@
     </div>
     <div>{{ item.fechaIngreso }}</div>
     <div>
-      <div *ngIf="item.fechaSalida  && tipo=='ingresos'">{{ item.fechaSalida }}</div>
-      <div *ngIf="!item.fechaSalida && tipo=='ingresos'">Pendiente</div>
-      <div *ngIf="!item.finalizado  && tipo=='reservas' && !item.reserva">Pendiente</div>
-      <div *ngIf="item.reserva      && tipo=='reservas'">Confirmada</div>
-      <div *ngIf="!item.reserva     && tipo=='reservas' && item.finalizado">Cancelada</div>
+      <div *ngIf="item.fechaSalida && tipo == 'ingresos'">
+        {{ item.fechaSalida }}
+      </div>
+      <div *ngIf="!item.fechaSalida && tipo == 'ingresos'">Pendiente</div>
+      <div *ngIf="!item.finalizado && tipo == 'reservas' && !item.reserva">
+        Pendiente
+      </div>
+      <div *ngIf="item.reserva && tipo == 'reservas'">Confirmada</div>
+      <div *ngIf="!item.reserva && tipo == 'reservas' && item.finalizado">
+        Cancelada
+      </div>
     </div>
     <div>{{ item.observaciones }}</div>
+    <div>
+      <i
+        class="material-icons editar"
+        data-toggle="modal"
+        data-backdrop="static"
+        data-target="#exampleModalCenter"
+        (click)="editItem(item)"
+      >
+        create
+      </i>
+    </div>
   </div>
 </cdk-virtual-scroll-viewport>
+
+<app-formulario
+(estado)="updateIngreso($event)"
+[events]="updateItem.asObservable()"
+
+>
+
+</app-formulario>

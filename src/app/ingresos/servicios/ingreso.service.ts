@@ -26,10 +26,11 @@ export class IngresoService {
     return this.http.get(`http://localhost:3000/ingresos/get/${query.habitacion}/${query.tipo}`)
       
    }
-
-   reserva(reserva){
+    reserva(reserva){
      return this.http.put("http://localhost:3000/ingresos/reserva",reserva).toPromise()
    }
-  
+   updateIngreso(item){
+       return this.http.put("http://localhost:3000/ingresos/update",item).toPromise()
+   }
 }
 

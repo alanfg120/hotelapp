@@ -19,7 +19,7 @@ import { Observable } from "rxjs";
   styleUrls: ["./formulario.component.css"]
 })
 export class FormularioComponent implements OnInit {
-
+  update:boolean;
   loading:boolean;
   @Input() events: Observable<void>;
   @Input() habitacion: string;
@@ -34,6 +34,8 @@ export class FormularioComponent implements OnInit {
 
   ngOnInit() {
       this.events.subscribe((data: any) => {
+      
+        
         this.estadoactual = data.estadoactual
         this.habitacion   = data.habitacion
         if (data.estadoactual == "ocupado" || data.estadoactual == "reservado")
@@ -44,25 +46,37 @@ export class FormularioComponent implements OnInit {
                                  this.ingresoOld = data
                                  this.loading=true
         });
+        if(data._id){
+           this.update=true
+           this.ingreso=data
+           
+        }
     });
   }
  async onSubmit(form: any) {
     if (form.valid) {
-      this.ingreso.fechaIngreso = moment()
-        .locale("es")
-        .format("L")
-        .toString();
-      var color = Math.floor(0x1000000 * Math.random()).toString(16);
-      this.ingreso.color = `solid 4px #${("000000" + color).slice(-6)}`;
-      this.ingreso.habitacion = this.habitacion;
-      this.ingreso.finalizado = false;
-      let status: any = await this.ingresoService.newIngreso(this.ingreso);
-      status.error ? alert("Ocurrio un Error") : this.closeModal.nativeElement.click();
-      this.updateHabitacion(this.habitacion,this.ingreso.estado)
-      form.reset()
-    } else {
-      this.errorinput = !this.errorinput;
-    }
+        if(this.update){
+          let status: any = await this.ingresoService.updateIngreso(this.ingreso)     
+          status.error ? alert("Ocurrio un Error") : this.closeModal.nativeElement.click();
+          this.updateIngreso(this.ingreso)     
+        }
+        else {
+          this.ingreso.fechaIngreso = moment()
+          .locale("es")
+          .format("L")
+          .toString();
+          var color = Math.floor(0x1000000 * Math.random()).toString(16);
+          this.ingreso.color = `solid 4px #${("000000" + color).slice(-6)}`;
+          this.ingreso.habitacion = this.habitacion;
+          this.ingreso.finalizado = false;
+          let status: any = await this.ingresoService.newIngreso(this.ingreso);
+          status.error ? alert("Ocurrio un Error") : this.closeModal.nativeElement.click();
+          this.updateHabitacion(this.habitacion,this.ingreso.estado)
+          form.reset()
+
+        }
+    } else this.errorinput = !this.errorinput;
+    
 }
 async salida(index){
   if(this.estadoactual == 'ocupado'){
@@ -103,6 +117,9 @@ updateHabitacion(habitacion,estado){
     estado
   });
 
+}
+updateIngreso(item){
+  this.estado.emit(item)
 }
 
 }

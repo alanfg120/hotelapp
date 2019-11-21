@@ -10,11 +10,11 @@
     class="modal-dialog modal-dialog-centered  modal-dialog-scrollable"
     role="document"
     [ngClass]="{
-      'modal-xxl': estadoactual == 'ocupado' || estadoactual == 'reservado',
-      'modal-lg': estadoactual == 'disponible'
+      'modal-xxl': estadoactual == 'ocupado' || estadoactual == 'reservado' ,
+      'modal-lg': estadoactual == 'disponible' || update
     }"
   >
-    <div class="modal-content" *ngIf="estadoactual == 'disponible'">
+    <div class="modal-content" *ngIf="estadoactual == 'disponible' || update">
       <form #form="ngForm" (ngSubmit)="onSubmit(form)">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalCenterTitle">
